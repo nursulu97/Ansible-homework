@@ -1,0 +1,49 @@
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - apache2
+        - tree
+        - git
+
+    - name: Start Apache service and enable it 
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Create group 'kaizen'
+      group:
+        name: kaizen
+        state: present
+
+    - name: Create group 'devops'
+      group:
+        name: devops
+        state: present
+
+    - name: Create group 'qa'
+      group:
+        name: qa
+        state: present
+
+    - name: Add the user 'tester' to the group 'qa'
+      user:
+        name: tester
+        group: qa
+
+    - name: Add the user @Nursulu07 , appending the group 'qa' and 'kaizen' to the user's groups
+      user:
+        name: Nursulu07
+        groups: qa,kaizen
+        append: yes
+    
+    - name: Copy files from Homework1 to remote machine
+      copy:
+        src: "./"
+        dest: /root/

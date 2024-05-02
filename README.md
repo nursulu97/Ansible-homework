@@ -36,4 +36,9 @@ ok: [64.23.244.221]
 
 PLAY RECAP ***********************************************************************************************
 64.23.244.221              : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+
+root@ubuntu:~# ls
+main.yml  snap
  ```
