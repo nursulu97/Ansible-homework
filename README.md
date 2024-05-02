@@ -41,4 +41,7 @@ PLAY RECAP *********************************************************************
 
 root@ubuntu:~# ls
 main.yml  snap
+
+root@ubuntu:~# id Nursulu07
+uid=1001(Nursulu07) gid=1003(Nursulu07) groups=1003(Nursulu07),1000(kaizen),1002(qa)
  ```
