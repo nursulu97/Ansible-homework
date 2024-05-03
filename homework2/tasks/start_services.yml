@@ -1,0 +1,11 @@
+- name: Start and enable Apache
+  systemd:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Start and enable MariaDB
+  systemd:
+    name: mariadb
+    state: started
+    enabled: yes

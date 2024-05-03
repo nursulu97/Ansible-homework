@@ -1,0 +1,14 @@
+- name: Deploy Wordpress on CentOS 7
+  hosts: all
+  become: true
+  tasks:
+    - import_tasks: tasks/install_packages.yml
+    - import_tasks: tasks/configure_php.yml
+    - import_tasks: tasks/download_wordpress.yml
+    - import_tasks: tasks/configure_wordpress.yml
+    - import_tasks: tasks/start_services.yml
+
+  handlers:
+    - import_tasks: handlers/restart_apache.yml
+
+
