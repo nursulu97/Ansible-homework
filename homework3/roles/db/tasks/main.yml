@@ -1,0 +1,22 @@
+- name: Start mariadb
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+
+- name: Create a new database with name '"{{ db_name }}"'
+  community.mysql.mysql_db:
+    login_user: nursulu0797
+    login_password: kaizen123
+    name: "{{ db_name }}"
+    state: present
+
+- name: Create database user with name 'nursulu0797' and password 'kaizen123' with all database privileges
+  community.mysql.mysql_user:
+    login_user: nursulu0797
+    login_password: kaizen123
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    priv: '*.*:ALL'
+    state: present
+    column_case_sensitive: false

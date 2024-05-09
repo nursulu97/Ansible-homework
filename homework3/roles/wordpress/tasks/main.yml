@@ -1,0 +1,57 @@
+- name: Download Wordpress
+  get_url:
+    url: "{{ url }}"
+    dest: "{{ tar_file }}"
+
+- name: Extract file
+  unarchive:
+    src: "{{ tar_file }}"
+    dest: /tmp
+    remote_src: yes  
+
+- name: Copy file with owner and permissions
+  copy:
+    src: /tmp/wordpress/.
+    dest: /var/www/html/
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0755'
+    remote_src: yes
+
+- name: Template a file to html folder
+  template:
+    src: roles/wordpress/templates/wp-config-sample.php.j2
+    dest: /var/www/html/wp-config.php
+
+- name: Restart Apache
+  service:
+    name: "{{ apache }}"
+    state: restarted- name: Download Wordpress
+  get_url:
+    url: "{{ url }}"
+    dest: "{{ tar_file }}"
+
+- name: Extract file
+  unarchive:
+    src: "{{ tar_file }}"
+    dest: /tmp
+    remote_src: yes  
+
+- name: Copy file with owner and permissions
+  copy:
+    src: /tmp/wordpress/.
+    dest: /var/www/html/
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0755'
+    remote_src: yes
+
+- name: Template a file to html folder
+  template:
+    src: roles/wordpress/templates/wp-config-sample.php.j2
+    dest: /var/www/html/wp-config.php
+
+- name: Restart Apache
+  service:
+    name: "{{ apache }}"
+    state: restarted
